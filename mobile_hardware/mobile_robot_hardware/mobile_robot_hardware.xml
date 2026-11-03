@@ -1,0 +1,10 @@
+<library path="mobile_robot_hardware">
+    <class name="mobile_robot_hardware/MobileRobotInterface"
+      type="mobile_robot_hardware::MobileRobotInterface"
+      base_class_type="hardware_interface::SystemInterface"
+    >
+      <description>
+        Mobile Robot Hardware Interface
+      </description>
+    </class>
+  </library>

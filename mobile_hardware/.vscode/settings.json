@@ -1,3 +1,17 @@
 {
-    "cmake.sourceDirectory": "/home/pc/mobileRobot_ws/src/mobile_hardware/my_robot_hardware"
+    "cmake.sourceDirectory": "/home/pc/mobileRobot_ws/src/mobile_hardware/mobile_robot_hardware",
+    "files.associations": {
+        "*.ino": "plaintext"
+    },
+    "C_Cpp.files.exclude": {
+        "**/.vscode": true,
+        "**/.vs": true,
+        "**/esp32/**": true,
+        "**/*.ino": true
+    },
+    "C_Cpp.codeAnalysis.exclude": {
+        "**/esp32/**": true,
+        "**/*.ino": true
+    },
+    "C_Cpp.exclusionPolicy": "checkFilesAndFolders"
 }

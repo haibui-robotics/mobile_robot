@@ -1,6 +1,7 @@
 <launch>
 
     <arg name="launch_rviz" default="true"/>
+    <arg name="use_sim_time" default="true"/>
     <!-- Loại bỏ biến môi trường do VS Code bản SNAP tiêm vào (tránh lỗi GTK khi chạy rviz2/Gazebo) -->
     <set_env name="GTK_PATH" value=""/>
     <set_env name="GTK_EXE_PREFIX" value=""/>
@@ -9,7 +10,8 @@
     <set_env name="LOCPATH" value=""/>
 
     <!-- Tạo môi trường / đường dẫn cho Gazebo -->
-    <set_env name="GZ_SIM_RESOURCE_PATH" value="$(find-pkg-share my_mobilerobot)/../"/>
+    <!-- <set_env name="GZ_SIM_RESOURCE_PATH" value="$(find-pkg-share my_mobilerobot)/../"/> -->
+     <set_env name="GZ_SIM_RESOURCE_PATH" value="/home/pc/mobileRobot_ws/src/mobile_description/my_mobilerobot/models"/>
     <let name="urdf_path" value="$(find-pkg-share my_mobilerobot)/urdf/my_robot.urdf.xacro"/>
     <let name="rviz_config_path" value="$(find-pkg-share my_mobilerobot)/rviz/config.rviz"/>
     <let name="gazebo_config_path" value="$(find-pkg-share my_mobilerobot)/config/gazebo_bridge.yaml"/>
@@ -22,7 +24,7 @@
 
     <!-- Khởi chạy Gazebo Sim -->
     <include file="$(find-pkg-share ros_gz_sim)/launch/gz_sim.launch.py">
-        <arg name="gz_args" value="$(find-pkg-share my_mobilerobot)/worlds/test_world.sdf -r"/>
+        <arg name="gz_args" value="$(find-pkg-share my_mobilerobot)/worlds/small_warehouse.world -r"/>
     </include>
 
     <!-- Spawn robot vào thế giới Gazebo -->

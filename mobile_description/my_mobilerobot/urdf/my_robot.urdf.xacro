@@ -3,8 +3,10 @@
 
     <xacro:arg name="use_gazebo" default="true" />
 
-    <!-- [SỬA 2026-10-13] encoder_cpr đổi 11 -> 44 (11 PPR x4 do decode cầu phương 4x). -->
-    <xacro:arg name="encoder_cpr" default="44" />
+    <!-- [FIX 2026-10-22] encoder_cpr = so xung encoder / 1 vong banh, khop TOTAL_CPR=1234.3 trong firmware ESP32. -->
+    <xacro:arg name="encoder_cpr" default="1234.3" />
+    <!-- [FIX 2026-10-22] Cong serial cho robot that (dung khi use_gazebo:=false). -->
+    <xacro:arg name="serial_port" default="/dev/ttyUSB0" />
 
     <xacro:property name="base_length" value="0.6" />
     <xacro:property name="base_width" value="0.4" />
@@ -20,7 +22,8 @@
 
     <xacro:include filename="camera.xacro"/>
     <xacro:include filename="lidar.xacro"/>
-    
+    <xacro:include filename="imu.xacro"/>
+
     <xacro:macro name="wheel" params="prefix">
         <link name="${prefix}_wheel">
             <visual>

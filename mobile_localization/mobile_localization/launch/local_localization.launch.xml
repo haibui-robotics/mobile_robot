@@ -1,0 +1,18 @@
+<launch>
+  <!-- [THÊM 2026-11-02] Tham số use_sim_time để dùng chung cho cả xe thật (false) và Gazebo (true) -->
+  <arg name="use_sim_time" default="false"/>
+
+  <!-- [SỬA 2026-11-02] Đổi cú pháp XML từ package/executable sang pkg/exec chuẩn của ROS 2 Launch.
+       Đồng thời ekf_filter_node hiện đọc trực tiếp /imu/out (frame imu_link đã có trong URDF) và /mobile_controller/odom
+       để phát cây TF chính (odom -> base_footprint) cùng topic /odometry/filtered.
+       (Đã bỏ node static_transform_publisher base_footprint_ekf -> imu_link_ekf vì đã dùng trực tiếp base_footprint và imu_link). -->
+
+  <!-- Node EKF Localization (Kết hợp Odometry bánh xe + IMU MPU6050) -->
+  <node pkg="robot_localization" exec="ekf_node" name="ekf_filter_node" output="screen">
+    <param from="$(find-pkg-share mobile_localization)/config/ekf.yaml" />
+    <param name="use_sim_time" value="$(var use_sim_time)" />
+  </node>
+
+  <!-- [SỬA 2026-11-02] Tạm đóng imu_republisher vì ekf.yaml đã đọc trực tiếp /imu/out với frame imu_link chuẩn của URDF -->
+  <!-- <node pkg="mobile_localization" exec="imu_republisher" name="imu_republisher_py" output="screen" /> -->
+</launch>

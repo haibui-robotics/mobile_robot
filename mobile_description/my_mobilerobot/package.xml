@@ -26,7 +26,9 @@
   <exec_depend>sensor_msgs</exec_depend>          <!-- Image / CameraInfo / JointState -->
   <exec_depend>tf2_msgs</exec_depend>             <!-- TFMessage -->
   <exec_depend>rosgraph_msgs</exec_depend>        <!-- Clock -->
-
+  <exec_depend>tf2_ros</exec_depend>
+  <exec_depend>tf_transformations</exec_depend>
+  <exec_depend>mobile_msgs</exec_depend>
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 

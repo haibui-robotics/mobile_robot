@@ -1,9 +1,0 @@
-/home/pc/mobileRobot_ws/src/build/my_mobilerobot/CMakeFiles/uninstall.dir
-/home/pc/mobileRobot_ws/src/build/my_mobilerobot/CMakeFiles/my_mobilerobot_uninstall.dir
-/home/pc/mobileRobot_ws/src/build/my_mobilerobot/CMakeFiles/test.dir
-/home/pc/mobileRobot_ws/src/build/my_mobilerobot/CMakeFiles/edit_cache.dir
-/home/pc/mobileRobot_ws/src/build/my_mobilerobot/CMakeFiles/rebuild_cache.dir
-/home/pc/mobileRobot_ws/src/build/my_mobilerobot/CMakeFiles/list_install_components.dir
-/home/pc/mobileRobot_ws/src/build/my_mobilerobot/CMakeFiles/install.dir
-/home/pc/mobileRobot_ws/src/build/my_mobilerobot/CMakeFiles/install/local.dir
-/home/pc/mobileRobot_ws/src/build/my_mobilerobot/CMakeFiles/install/strip.dir

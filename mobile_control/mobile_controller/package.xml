@@ -9,13 +9,31 @@
   <buildtool_depend>ament_cmake</buildtool_depend>
 
   <exec_depend>ros2launch</exec_depend>
+  <exec_depend>rclpy</exec_depend>                    
   <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>joint_state_publisher_gui</exec_depend>
   <exec_depend>xacro</exec_depend>
-  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+  <exec_depend>ros_gz_sim</exec_depend>
+  <exec_depend>ros_gz_bridge</exec_depend>
 
-  <!-- ===== [THÊM] Phụ thuộc cho ros2_control khi chạy trong Gazebo ===== -->
-  <exec_depend>ros2_controllers</exec_depend>  <!-- cấp joint_state_broadcaster + DiffDriveController -->
-  <exec_depend>gz_ros2_control</exec_depend>   <!-- plugin GazeboSimROS2ControlPlugin / GazeboSimSystem -->
+  <!-- ===== [THÊM] Các phụ thuộc còn thiếu cho ros2_control + node Python ===== -->
+  <exec_depend>controller_manager</exec_depend>   <!-- controller_manager + lệnh spawner -->
+  <exec_depend>ros2_controllers</exec_depend>     <!-- cấp joint_state_broadcaster + diff_drive_controller -->
+  <exec_depend>gz_ros2_control</exec_depend>      <!-- plugin GazeboSimROS2ControlPlugin / GazeboSimSystem -->
+  <exec_depend>geometry_msgs</exec_depend>        <!-- Twist / TwistStamped -->
+  <exec_depend>nav_msgs</exec_depend>             <!-- Odometry -->
+  <exec_depend>sensor_msgs</exec_depend>          <!-- Image / CameraInfo / JointState -->
+  <exec_depend>tf2_msgs</exec_depend>             <!-- TFMessage -->
+  <exec_depend>rosgraph_msgs</exec_depend>        <!-- Clock -->
+  <exec_depend>tf2_ros</exec_depend>
+  <exec_depend>tf_transformations</exec_depend>
+  <exec_depend>mobile_msgs</exec_depend>
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <exec_depend>ros2launch</exec_depend>
+
 
   <!-- ===== [THÊM] Phụ thuộc cho lệnh `ros2 control ...` (package ros2controlcli) ===== -->
   <exec_depend>ros2controlcli</exec_depend>

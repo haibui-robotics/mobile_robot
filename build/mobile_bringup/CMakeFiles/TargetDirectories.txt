@@ -1,9 +1,0 @@
-/home/pc/mobileRobot_ws/src/build/mobile_bringup/CMakeFiles/uninstall.dir
-/home/pc/mobileRobot_ws/src/build/mobile_bringup/CMakeFiles/mobile_bringup_uninstall.dir
-/home/pc/mobileRobot_ws/src/build/mobile_bringup/CMakeFiles/test.dir
-/home/pc/mobileRobot_ws/src/build/mobile_bringup/CMakeFiles/edit_cache.dir
-/home/pc/mobileRobot_ws/src/build/mobile_bringup/CMakeFiles/rebuild_cache.dir
-/home/pc/mobileRobot_ws/src/build/mobile_bringup/CMakeFiles/list_install_components.dir
-/home/pc/mobileRobot_ws/src/build/mobile_bringup/CMakeFiles/install.dir
-/home/pc/mobileRobot_ws/src/build/mobile_bringup/CMakeFiles/install/local.dir
-/home/pc/mobileRobot_ws/src/build/mobile_bringup/CMakeFiles/install/strip.dir

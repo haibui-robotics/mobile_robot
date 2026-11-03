@@ -5,7 +5,7 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "/opt/ros/jazzy/include/**",
-                "${workspaceFolder}/install/my_robot_hardware/include/**"
+                "${workspaceFolder}/install/mobile_robot_hardware/include/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

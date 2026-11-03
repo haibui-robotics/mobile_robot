@@ -2,32 +2,36 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <ros2_control name="MobileBaseHardwareInterface" type="system">
-    <!-- <hardware>
-      <plugin>my_robot_hardware/MyRobotHardware</plugin>
-      <param name="serial_port">$(arg serial_port)</param>
-      <param name="baud_rate">$(arg baud_rate)</param>
-      <param name="gear_ratio">$(arg gear_ratio)</param>
-      <param name="encoder_cpr">$(arg encoder_cpr)</param>
-    </hardware> -->
-    <hardware>
-      <!-- <plugin>mock_components/GenericSystem</plugin>
-      <param name="calculate_dynamics">true</param> -->
-      <plugin>gz_ros2_control/GazeboSimSystem</plugin>   
-      <!--gazebosimsystem chay dong co ao thay vi dung dong co that-->
-  </hardware>
+
+    <!-- Mo phong Gazebo: dung GazeboSimSystem -->
+    <xacro:if value="$(arg use_gazebo)">
+      <hardware>
+        <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+      </hardware>
+    </xacro:if>
+
+    <!-- Robot that: dung hardware interface doc/ghi qua cong serial (ESP32) -->
+    <xacro:unless value="$(arg use_gazebo)">
+      <hardware>
+        <plugin>mobile_robot_hardware/MobileRobotInterface</plugin>
+        <param name="serial_port">$(arg serial_port)</param>
+        <param name="encoder_cpr">1234.3</param>
+        <param name="use_pwm">false</param>
+      </hardware>
+    </xacro:unless>
 
     <joint name="right_wheel_joint">
       <command_interface name="velocity">
-       <param name="min">-1</param>
-        <param name="max">1</param>
+        <param name="min">-10.0</param>
+        <param name="max">10.0</param>
       </command_interface>
       <state_interface name="position" />
       <state_interface name="velocity" />
     </joint>
     <joint name="left_wheel_joint">
       <command_interface name="velocity">
-        <param name="min">-1</param>
-        <param name="max">1</param>
+        <param name="min">-10.0</param>
+        <param name="max">10.0</param>
       </command_interface>
       <state_interface name="position" />
       <state_interface name="velocity" />

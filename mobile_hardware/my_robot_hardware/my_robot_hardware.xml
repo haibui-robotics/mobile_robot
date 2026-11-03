@@ -1,9 +1,0 @@
-<library path="my_robot_hardware">
-  <class name="my_robot_hardware/MyRobotHardware"
-         type="my_robot_hardware::MyRobotHardware"
-         base_class_type="hardware_interface::SystemInterface">
-    <description>
-      Plugin Hardware Interface đơn giản cho ROS 2 Control.
-    </description>
-  </class>
-</library>

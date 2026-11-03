@@ -151,7 +151,9 @@ Visualization Manager:
         Filter size: 10
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /diff_drive_controller/odom
+        # [SỬA 2026-11-02] Đổi sang /odometry/filtered để hiển thị quỹ đạo sau khi đã lọc qua EKF (Encoder + IMU)
+        # Giá trị cũ: Value: /mobile_controller/odom
+        Value: /odometry/filtered
       Value: true
     - Class: rviz_default_plugins/TF
       Enabled: true
@@ -230,8 +232,8 @@ Visualization Manager:
       Axis: Z
       Channel Name: intensity
       Class: rviz_default_plugins/LaserScan
-      Color: 255; 255; 255
-      Color Transformer: Intensity
+      Color: 255; 0; 0
+      Color Transformer: FlatColor
       Decay Time: 0
       Enabled: true
       Invert Rainbow: false
@@ -243,21 +245,22 @@ Visualization Manager:
       Position Transformer: XYZ
       Selectable: true
       Size (Pixels): 3
-      Size (m): 0.009999999776482582
+      Size (m): 0.05
       Style: Flat Squares
       Topic:
         Depth: 5
         Durability Policy: Volatile
         Filter size: 10
         History Policy: Keep Last
-        Reliability Policy: Reliable
+        Reliability Policy: System Default
         Value: /scan
       Use Fixed Frame: true
-      Use rainbow: true
+      Use rainbow: false
       Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
+    # [SỬA 2026-11-02] Đổi Fixed Frame từ base_footprint sang odom để thấy xe di chuyển trên mặt lưới Grid trong RViz2
     Fixed Frame: odom
     Frame Rate: 30
   Name: root

@@ -1,0 +1,55 @@
+<launch>
+  <arg name="serial_port" default="/dev/ttyUSB0"/>
+  <!-- [SỬA 2026-11-02] Thêm tùy chọn bật giao diện mô phỏng 3D RViz2 đồng bộ với xe thật (mặc định: true) -->
+  <arg name="launch_rviz" default="true"/>
+
+  <!-- Loại bỏ biến môi trường GTK của VS Code SNAP để tránh lỗi khi mở cửa sổ RViz2 -->
+  <set_env name="GTK_PATH" value=""/>
+  <set_env name="GTK_EXE_PREFIX" value=""/>
+  <set_env name="GTK_IM_MODULE_FILE" value=""/>
+  <set_env name="GIO_MODULE_DIR" value=""/>
+  <set_env name="LOCPATH" value=""/>
+
+  <!-- Đường dẫn file cấu hình giao diện RViz2 -->
+  <let name="rviz_config_path" value="$(find-pkg-share my_mobilerobot)/rviz/config.rviz"/>
+
+  <!-- Include hardware_interface.launch.xml -->
+  <include file="$(find-pkg-share mobile_robot_hardware)/launch/hardware_interface.launch.xml">
+    <arg name="serial_port" value="$(var serial_port)"/>
+  </include>
+
+  <!-- Include controller.launch.xml với các launch arguments -->
+  <include file="$(find-pkg-share mobile_controller)/launch/controller.launch.xml">
+    <arg name="use_simple_controller" value="False"/>
+    <arg name="use_python" value="False"/>
+  </include>
+
+  <!-- [SỬA 2026-11-02] Chạy node simple_controller để đọc xung encoder thực tế từ /joint_states,
+       tính toán vận tốc bánh xe (/mobile_controller/odom).
+       Đặt publish_tf:=false để nhường quyền phát cây TF (odom -> base_footprint) cho bộ lọc EKF bên dưới. -->
+  <node pkg="mobile_controller" exec="simple_controller" name="simple_controller" output="screen">
+    <param name="use_sim_time" value="false"/>
+    <param name="publish_tf" value="false"/>
+  </node>
+
+  <!-- [THÊM 2026-11-02] Khởi chạy bộ lọc EKF (Extended Kalman Filter) kết hợp /mobile_controller/odom (Encoder)
+       và /imu/out (MPU6050) để phát TF (odom -> base_footprint) và topic /odometry/filtered chuẩn xác -->
+  <include file="$(find-pkg-share mobile_localization)/launch/local_localization.launch.xml">
+    <arg name="use_sim_time" value="false"/>
+  </include>
+
+  <!-- [SỬA 2026-11-02] Mở giao diện 3D RViz2 đồng bộ thời gian thực với phần cứng -->
+  <node pkg="rviz2" exec="rviz2" output="screen" args="-d $(var rviz_config_path)" if="$(var launch_rviz)">
+    <param name="use_sim_time" value="false"/>
+  </node>
+
+  <!-- Include joystick_teleop.launch.py với launch argument -->
+  <!-- <include file="$(find-pkg-share mobile_controller)/launch/joystick_teleop.launch.xml">
+    <arg name="use_sim_time" value="False"/>
+  </include> -->
+
+  <!-- [SỬA 2026-11-02] Dữ liệu MPU6050 đã được đọc và hiệu chuẩn trực tiếp trên ESP32 (test2dc.ino),
+       sau đó gửi chung qua cổng Serial /dev/ttyUSB0 và được MobileRobotInterface publish thẳng lên topic /imu/out.
+       Không cần chạy node mpu6050_driver.py riêng để tránh xung đột tranh chấp cổng Serial. -->
+  <!-- <node pkg="mobile_robot_hardware" exec="mpu6050_driver.py" name="mpu6050_driver_node"/> -->
+</launch>
